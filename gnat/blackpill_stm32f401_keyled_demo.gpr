@@ -1,0 +1,41 @@
+
+with "../config/blackpill_stm32f401_keyled_demo_config.gpr";
+
+with "light_blackpill_stm32f401.gpr";
+
+project Blackpill_STM32F401_KeyLED_Demo is
+
+   for Target use Light_Blackpill_STM32F401'Target;
+   for Runtime use Light_Blackpill_STM32F401'Runtime;
+
+   for Main use ("key_led_demo-driver.adb");
+
+   for Source_Dirs use ("../source");
+   for Object_Dir use "../.objs";
+   for Exec_Dir use "../bin";
+
+   package Compiler is
+      for Switches ("Ada") use
+        (
+            "-g",
+            "-O2",
+            "-fdata-sections",
+            "-ffunction-sections"
+        );
+   end Compiler;
+
+   package Linker is
+
+      for Switches ("Ada") use
+        Light_Blackpill_STM32F401.Linker_Switches
+         & ("-Wl,--gc-sections");
+
+   end Linker;
+
+   package Builder is
+
+      for Executable ("key_led_demo-driver.adb") use "demo.elf";
+
+   end Builder;
+
+end Blackpill_STM32F401_KeyLED_Demo;
