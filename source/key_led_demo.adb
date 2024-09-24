@@ -4,7 +4,6 @@
 --  SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 --
 
-with A0B.ARMv7M.CMSIS;
 with A0B.Callbacks.Generic_Parameterless;
 with A0B.STM32F401.GPIO.PIOA;
 with A0B.STM32F401.GPIO.PIOC;
