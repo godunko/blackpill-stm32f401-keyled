@@ -5,9 +5,14 @@
 --
 
 with A0B.ARMv7M.CMSIS;
+with A0B.STM32F401.SVD.RCC; use A0B.STM32F401.SVD.RCC;
 
 procedure Key_LED_Demo.Driver is
 begin
+   RCC_Periph.AHB1ENR.GPIOAEN := True;
+   RCC_Periph.AHB1ENR.GPIOCEN := True;
+   RCC_Periph.APB2ENR.SYSCFGEN := True;
+
    Key_LED_Demo.Initialize;
 
    A0B.ARMv7M.CMSIS.Enable_Interrupts;

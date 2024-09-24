@@ -9,8 +9,6 @@ with A0B.Callbacks.Generic_Parameterless;
 with A0B.STM32F401.GPIO.PIOA;
 with A0B.STM32F401.GPIO.PIOC;
 
-with A0B.STM32F401.SVD.RCC; use A0B.STM32F401.SVD.RCC;
-
 package body Key_LED_Demo is
 
    LED : A0B.STM32F401.GPIO.GPIO_Line renames A0B.STM32F401.GPIO.PIOC.PC13;
@@ -29,10 +27,6 @@ package body Key_LED_Demo is
 
    procedure Initialize is
    begin
-      RCC_Periph.AHB1ENR.GPIOAEN := True;
-      RCC_Periph.AHB1ENR.GPIOCEN := True;
-      RCC_Periph.APB2ENR.SYSCFGEN := True;
-
       Key.Configure_EXTI
         (Mode => A0B.STM32F401.GPIO.Falling_Edge,
          Pull => A0B.STM32F401.GPIO.Pull_Up);
